@@ -1,7 +1,5 @@
 name: Change issue status on assign
 on: issues
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
 
 jobs:
   github-actions-automate-projects:
