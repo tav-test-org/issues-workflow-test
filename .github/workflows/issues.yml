@@ -11,4 +11,4 @@ jobs:
         with:
           project: Tavh's test project
           column: In progress
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          repo-token: ${{ secrets.GHPROJECT_TOKEN }}
