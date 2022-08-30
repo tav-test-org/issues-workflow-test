@@ -1,0 +1,16 @@
+name: Change issue status on assign
+on: issues
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  github-actions-automate-projects:
+    runs-on: ubuntu-latest
+    steps:
+    - name: add-new-issues-to-repository-based-project-column
+      uses: docker://takanabe/github-actions-automate-projects:v0.0.1
+      if: github.event_name == 'issues' && github.event.action == 'opened'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_PROJECT_URL: https://github.com/orgs/epsagon/projects/3
+        GITHUB_PROJECT_COLUMN_NAME: In progress
