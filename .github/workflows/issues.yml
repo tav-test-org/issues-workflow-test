@@ -1,14 +1,14 @@
 name: Change issue status on assign
-on: issues
+on: 
+  issues:
+    types: [assigned]
 
 jobs:
   github-actions-automate-projects:
     runs-on: ubuntu-latest
     steps:
-    - name: add-new-issues-to-organization-based-project-column
-      uses: docker://takanabe/github-actions-automate-projects:v0.0.1
-      if: github.event_name == 'issues' && github.event.action == 'opened'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITHUB_PROJECT_URL: https://github.com/orgs/tav-test-org/projects/1
-        GITHUB_PROJECT_COLUMN_NAME: In progress
+      - uses: alex-page/github-project-automation-plus@v0.8.1
+        with:
+          project: Tavh's test project
+          column: In progress
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
