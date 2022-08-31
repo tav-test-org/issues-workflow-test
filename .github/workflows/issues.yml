@@ -3,6 +3,8 @@ on:
   issues:
     types: 
       - assigned
+env:
+  TEST_REPO_TOKEN: ${{ secrets.TEST_REPO_TOKEN }}
 
 jobs:
   automate-project-columns:
@@ -12,4 +14,3 @@ jobs:
         with:
           project: https://github.com/orgs/tav-test-org/projects/4
           column_name: In Progress
-          repo-token: ${{ secrets.TEST_REPO_TOKEN }}
