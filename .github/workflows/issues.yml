@@ -8,8 +8,8 @@ jobs:
   automate-project-columns:
     runs-on: ubuntu-latest
     steps:
-      - uses: alex-page/github-project-automation-plus@v0.8.1
+      - uses: srggrs/assign-one-project-github-action@1.2.0
         with:
           project: https://github.com/orgs/tav-test-org/projects/4
-          column: In Progress
+          column_name: In Progress
           repo-token: ${{ secrets.TEST_REPO_TOKEN }}
