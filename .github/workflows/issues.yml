@@ -4,7 +4,7 @@ on:
     types: 
       - assigned
 env:
-  TEST_REPO_TOKEN: ${{ secrets.TEST_REPO_TOKEN }}
+  MY_GITHUB_TOKEN: ${{ secrets.TEST_REPO_TOKEN }}
 
 jobs:
   automate-project-columns:
