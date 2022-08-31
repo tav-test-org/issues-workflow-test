@@ -3,14 +3,13 @@ on:
   issues:
     types: 
       - assigned
-env:
-  MY_GITHUB_TOKEN: {{ secrets.TEST_REPO_TOKEN }}
 
 jobs:
   automate-project-columns:
     runs-on: ubuntu-latest
     steps:
-      - uses: srggrs/assign-one-project-github-action@1.2.0
+      - uses: alex-page/github-project-automation-plus@v0.8.1
         with:
-          project: https://github.com/orgs/tav-test-org/projects/4
-          column_name: In Progress
+          project: Test
+          column: In Progress
+          repo-token: ${{ secrets.TEST_REPO_TOKEN }}
