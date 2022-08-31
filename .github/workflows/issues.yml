@@ -13,3 +13,4 @@ jobs:
           project: Test
           column: In Progress
           repo-token: ${{ secrets.TEST_REPO_TOKEN }}
+          action: update
