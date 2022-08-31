@@ -1,13 +1,16 @@
 name: Change issue status on assign
-on: [issues, pull_request]
+on: 
+  issues:
+    types: 
+      - assigned
 
 jobs:
   automate-project-columns:
     runs-on: ubuntu-latest
     steps:
       - uses: docker://takanabe/github-actions-automate-projects:v0.0.1
-        if: github.event_name == 'issues' && github.event.action == 'assigned'
-        env:
+        if: github.event_name == 'issues' && github.event.action != 'opened'
+        with:
           GITHUB_PROJECT_URL: https://github.com/orgs/tav-test-org/projects/4
           GITHUB_PROJECT_COLUMN_NAME: In Progress
           GITHUB_TOKEN: ${{ secrets.TEST_REPO_TOKEN }}
