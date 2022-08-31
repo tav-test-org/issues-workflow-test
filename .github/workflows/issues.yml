@@ -1,8 +1,5 @@
 name: Change issue status on assign
-on: 
-  issues:
-    types: 
-      - assigned
+on: [issues, pull_request]
 
 jobs:
   automate-project-columns:
