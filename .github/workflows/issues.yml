@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: alex-page/github-project-automation-plus@v0.8.1
         with:
-          project: Test
-          column: In Progress
+          project: Backlog
+          column: Triage
           repo-token: ${{ secrets.TEST_REPO_TOKEN }}
           action: update
