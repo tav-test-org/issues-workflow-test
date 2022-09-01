@@ -49,7 +49,7 @@ jobs:
           ISSUE_ID: ${{ github.event.issue.id }}
         run: |
           gh api graphql -f query='
-            mutation($project_id: ID!, $issue_d: ID!, $status_field_id: ID!, $option_id: String!) {
+            mutation($project_id: ID!, $issue_id: ID!, $status_field_id: ID!, $option_id: String!) {
               updateProjectV2ItemFieldValue(
                 input: {
                   projectId: $project_id
