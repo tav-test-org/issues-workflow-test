@@ -46,7 +46,7 @@ jobs:
       - name: Update issue status
         env:
           GITHUB_TOKEN: ${{ secrets.TEST_REPO_TOKEN }}
-          ISSUE_ID: ${{ github.event.issue.url }}
+          ISSUE_ID: ${{ github.event.url }}
         run: |
           gh api graphql -f query='
             mutation($project_id: ID!, $issue_id: ID!, $status_field_id: ID!, $option_id: String!) {
