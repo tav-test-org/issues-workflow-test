@@ -45,14 +45,11 @@ jobs:
           github-token: ${{ secrets.TEST_REPO_TOKEN }}
           project-id: '$PROJECT_ID'
           issue-id: ${{ github.event.issue.node_id }}
-      - run: |
-          echo '${{ steps.get-project-item-id.outputs.project-item-id }}'
-
 
       - name: Update issue status
         env:
           GITHUB_TOKEN: ${{ secrets.TEST_REPO_TOKEN }}
-          ISSUE_ITEM_ID: ${{ github.event.issue.node_id }}
+          ISSUE_ITEM_ID: ${{ steps.get-project-item-id.outputs.project-item-id }}
         run: |
           gh api graphql -f query='
             mutation($project_id: ID!, $issue_id: ID!, $status_field_id: ID!, $option_id: String!) {
