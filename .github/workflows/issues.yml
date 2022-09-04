@@ -50,14 +50,14 @@ jobs:
       - name: Update issue status
         env:
           GITHUB_TOKEN: ${{ secrets.TEST_REPO_TOKEN }}
-          ISSUE_ITEM_ID: ${{ steps.get-project-item-id.outputs.project-item-id }}
+          ISSUE_ITEM_ID: "${{ steps.get-project-item-id.outputs.project-item-id }}""
         run: |
           gh api graphql -f query='
-            mutation($project_id: ID!, $issue_id: ID!, $status_field_id: ID!, $option_id: String!) {
+            mutation($project_id: ID!, $item_id: ID!, $status_field_id: ID!, $option_id: String!) {
               updateProjectV2ItemFieldValue(
                 input: {
                   projectId: $project_id
-                  itemId: $issue_id
+                  itemId: $item_id
                   fieldId: $status_field_id
                   value: { 
                     singleSelectOptionId: $option_id
@@ -68,5 +68,5 @@ jobs:
                   id
                 }
               }
-            }' -f project_id=$PROJECT_ID -f issue_id=$ISSUE_ITEM_ID -f status_field_id=$STATUS_FIELD_ID -f option_id=$IN_PROGRESS_OPTION_ID
+            }' -f project_id=$PROJECT_ID -f item_id=$ISSUE_ITEM_ID -f status_field_id=$STATUS_FIELD_ID -f option_id=$IN_PROGRESS_OPTION_ID
 
