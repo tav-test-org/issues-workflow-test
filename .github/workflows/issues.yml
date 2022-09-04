@@ -21,10 +21,7 @@ jobs:
                   id
                   fields(first:100) {
                     nodes {
-                      ... on ProjectV2Field {
-                        id
-                        name
-                      }
+                      id
                       ... on ProjectV2SingleSelectField {
                         id
                         name
@@ -42,11 +39,11 @@ jobs:
           echo 'PROJECT_ID='$(jq '.data.organization.projectV2.id' project_data.json) >> $GITHUB_ENV
           echo 'STATUS_FIELD_ID='$(jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Status") | .id' project_data.json) >> $GITHUB_ENV
           echo 'IN_PROGRESS_OPTION_ID='$(jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Status") | .options[] | select(.name=="In Progress") |.id' project_data.json) >> $GITHUB_ENV
-        
+
       - name: Update issue status
         env:
           GITHUB_TOKEN: ${{ secrets.TEST_REPO_TOKEN }}
-          ISSUE_ID: ${{ github.event.url }}
+          ISSUE_ID: ${{ github.event.issue.node_id }}
         run: |
           gh api graphql -f query='
             mutation($project_id: ID!, $issue_id: ID!, $status_field_id: ID!, $option_id: String!) {
