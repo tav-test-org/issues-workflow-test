@@ -23,7 +23,7 @@ jobs:
                     nodes {
                       ... on ProjectV2SingleSelectField {
                         id
-                        name
+                        name                        
                         options {
                           id
                           name
@@ -39,10 +39,20 @@ jobs:
           echo 'STATUS_FIELD_ID='$(jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Status") | .id' project_data.json) >> $GITHUB_ENV
           echo 'IN_PROGRESS_OPTION_ID='$(jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Status") | .options[] | select(.name=="In Progress") |.id' project_data.json) >> $GITHUB_ENV
 
+      - uses: monry/actions-get-project-item-id@v2
+        id: get-project-item-id
+        with:
+          github-token: ${{ secrets.TEST_REPO_TOKEN }}
+          project-id: '$PROJECT_ID'
+          issue-id: ${{ github.event.issue.node_id }}
+      - run: |
+          echo '${{ steps.get-project-item-id.outputs.project-item-id }}'
+
+
       - name: Update issue status
         env:
           GITHUB_TOKEN: ${{ secrets.TEST_REPO_TOKEN }}
-          ISSUE_ID: ${{ github.event.issue.node_id }}
+          ISSUE_ITEM_ID: ${{ github.event.issue.node_id }}
         run: |
           gh api graphql -f query='
             mutation($project_id: ID!, $issue_id: ID!, $status_field_id: ID!, $option_id: String!) {
@@ -60,5 +70,5 @@ jobs:
                   id
                 }
               }
-            }' -f project_id=$PROJECT_ID -f issue_id=$ISSUE_ID -f status_field_id=$STATUS_FIELD_ID -f option_id=$IN_PROGRESS_OPTION_ID
+            }' -f project_id=$PROJECT_ID -f issue_id=$ISSUE_ITEM_ID -f status_field_id=$STATUS_FIELD_ID -f option_id=$IN_PROGRESS_OPTION_ID
 
