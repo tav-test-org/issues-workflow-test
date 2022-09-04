@@ -68,5 +68,5 @@ jobs:
                   id
                 }
               }
-            }' -f project_id=$PROJECT_ID -f item_id="$ISSUE_ITEM_ID" -f status_field_id=$STATUS_FIELD_ID -f option_id=$IN_PROGRESS_OPTION_ID
+            }' -f project_id=$PROJECT_ID -f item_id=$ISSUE_ITEM_ID -f status_field_id=$STATUS_FIELD_ID -f option_id=$IN_PROGRESS_OPTION_ID
 
