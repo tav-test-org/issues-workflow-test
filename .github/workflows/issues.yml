@@ -21,7 +21,6 @@ jobs:
                   id
                   fields(first:100) {
                     nodes {
-                      id
                       ... on ProjectV2SingleSelectField {
                         id
                         name
