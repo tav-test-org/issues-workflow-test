@@ -44,7 +44,7 @@ jobs:
         id: get-project-item-id
         with:
           github-token: ${{ secrets.TEST_REPO_TOKEN }}
-          project-id: $ {{ $PROJECT_ID }}
+          project-id: ${{ $PROJECT_ID }}
           issue-id: ${{ github.event.issue.node_id }}
 
       - name: Update issue status
