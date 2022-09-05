@@ -52,10 +52,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TEST_REPO_TOKEN }}
           ISSUE_ITEM_ID: ${{ steps.get-project-item-id.outputs.project-item-id }}
         run: |
-          echo "$PROJECT_ID" | tr -d '"' >> $GITHUB_ENV
-          echo "$STATUS_FIELD_ID" | tr -d '"' >> $GITHUB_ENV
-          echo "$IN_PROGRESS_OPTION_ID" | tr -d '"' >> $GITHUB_ENV
-          
           gh api graphql -f query='
             mutation($project_id: ID!, $item_id: ID!, $status_field_id: ID!, $option_id: String!) {
               updateProjectV2ItemFieldValue(
