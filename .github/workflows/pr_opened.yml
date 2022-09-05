@@ -1,6 +1,0 @@
-name: Change PR assignee on open
-on: 
-  pull_request:
-    types: 
-      - opened
-
