@@ -5,7 +5,7 @@ on:
       - unassigned
 
 jobs:
-  move-assigned-issue-to-backlog:
+  move-unassigned-issue-to-backlog:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch
@@ -13,3 +13,5 @@ jobs:
       - uses: ./.github/actions/change-issue-status
         with:
           target-status: "Backlog"
+          github-token: ${{ secrets.TEST_REPO_TOKEN }}
+
