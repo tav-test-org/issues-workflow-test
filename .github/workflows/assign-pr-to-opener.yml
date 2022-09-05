@@ -11,7 +11,7 @@ jobs:
       - name: Migrate user id
         id: migrate-user-id
         env:
-          GITHUB_TOKEN: ${{ inputs.github-token }}
+          GITHUB_TOKEN: ${{ secrets.TEST_REPO_TOKEN }}
           LEGACY_USER_ID: ${{ github.event.pull_request.user.node_id }}
         shell: bash
         run: |
