@@ -1,4 +1,4 @@
-name: Change issue status on assign
+name: Change issue status on unassign
 on: 
   issues:
     types: 
