@@ -30,7 +30,7 @@ jobs:
           PR_ID: ${{ github.event.pull_request.node_id }}
         run: |
           gh api graphql -f query='
-            mutation($pull_request_id: ID!, assigneeIds: [ID!]!) {
+            mutation($pull_request_id: ID!, $assignee_ids: [ID!]!) {
               updatePullRequest(
                 input: {
                   pullRequestId: $pull_request_id
