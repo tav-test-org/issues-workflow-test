@@ -50,7 +50,7 @@ runs:
     - uses: monry/actions-get-project-item-id@v2
       id: get-project-item-id
       with:
-        GITHUB_TOKEN: ${{ inputs.github-token }}
+        github-token: ${{ inputs.github-token }}
         project-id: ${{ env.PROJECT_ID }}
         issue-id: ${{ github.event.issue.node_id }}
 
