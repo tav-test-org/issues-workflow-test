@@ -20,7 +20,7 @@ runs:
         ORGANIZATION: tav-test-org
         TARGET_STATUS: ${{ inputs.target-status }}
         PROJECT_NUMBER: 4
-    - shell: bash
+      shell: bash
       run: |
         gh api graphql -f query='
           query($org: String!, $number: Int!) {
@@ -58,7 +58,7 @@ runs:
       env:
         GITHUB_TOKEN: ${{ inputs.github-token }}
         ISSUE_ITEM_ID: ${{ steps.get-project-item-id.outputs.project-item-id }}
-    - shell: bash
+      shell: bash
       run: |
         gh api graphql -f query='
           mutation($project_id: ID!, $item_id: ID!, $status_field_id: ID!, $option_id: String!) {
