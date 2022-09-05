@@ -41,4 +41,4 @@ jobs:
                   id
                 }
               }
-            }' -f pull_request_id=$PR_ID -f assignee_ids=$ASSIGNEE_ID
+            }' -f pull_request_id=$PR_ID -f assignee_ids=$USER_ID
