@@ -12,7 +12,11 @@ inputs:
 
 runs:
   using: composite
+  shell: bash
   steps:
+    - name: Checkout branch
+      uses: actions/checkout@v3
+      
     - name: Get project data
       id: get-project-data
       env:
