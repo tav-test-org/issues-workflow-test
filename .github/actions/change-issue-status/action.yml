@@ -45,7 +45,7 @@ runs:
 
         echo 'PROJECT_ID='$(jq '.data.organization.projectV2.id' project_data.json) | tr -d '"' >> $GITHUB_ENV
         echo 'STATUS_FIELD_ID='$(jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Status") | .id' project_data.json) | tr -d '"' >> $GITHUB_ENV
-        echo 'OPTION_ID='$(jq '.data.organization.projectV2.fields.nodes[] | select(.name== "Status") | .options[] | select(.name=='\"$TARGET_STATUS\"') | .id' project_data.json) | tr -d '"' >> $GITHUB_ENV
+        echo 'OPTION_ID='$(jq -r  --arg TARGET_STATUS "$TARGET_STATUS" '.data.organization.projectV2.fields.nodes[] | select(.name== "Status") | .options[] | select(.name==TARGET_STATUS) | .id' project_data.json) | tr -d '"' >> $GITHUB_ENV
 
     - uses: monry/actions-get-project-item-id@v2
       id: get-project-item-id
