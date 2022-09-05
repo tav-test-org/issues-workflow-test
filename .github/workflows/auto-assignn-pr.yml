@@ -1,0 +1,12 @@
+name: Change PR assignee on open
+on: 
+  pull_request:
+    types: 
+      - opened
+
+- uses: augustohp/github-action-pr-assignee
+  with:
+    token: ${{ secrets.TEST_REPO_TOKEN }}
+    require_assignee: false
+
+#
