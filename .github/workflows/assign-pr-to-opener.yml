@@ -21,6 +21,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TEST_REPO_TOKEN }}
           PR_ID: ${{ github.event.pull_request.node_id }}
+          URL: ${{ github.event.pull_request.url }}
+
         run: |
           gh api graphql -f query='
             mutation($pull_request_id: ID!, assigneeIds: [ID!]!) {
