@@ -53,6 +53,7 @@ jobs:
           ISSUE_ITEM_ID: ${{ steps.get-project-item-id.outputs.project-item-id }}
         run: |
           echo $PROJECT_ID
+          export ISSUE_ITEM_ID="$ISSUE_ITEM_ID"
           echo $ISSUE_ITEM_ID
           echo $STATUS_FIELD_ID
           echo $IN_PROGRESS_OPTION_ID
