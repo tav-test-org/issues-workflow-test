@@ -13,3 +13,4 @@ jobs:
       - uses: ./.github/actions/change-issue-status
         with:
           target-status: "In Progress"
+          github-token: ${{ secrets.TEST_REPO_TOKEN }}

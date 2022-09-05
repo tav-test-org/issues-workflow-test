@@ -6,13 +6,17 @@ inputs:
     required: true
     description: target issue status
 
+  github-token:
+    required: true
+    description: Github token with permissions to write to projects
+
 runs:
   using: composite
   steps:
     - name: Get project data
       id: get-project-data
       env:
-        GITHUB_TOKEN: ${{ secrets.TEST_REPO_TOKEN }}
+        GITHUB_TOKEN: ${{ inputs.github-token }}
         ORGANIZATION: tav-test-org
         TARGET_STATUS: ${{ inputs.target-status }}
         PROJECT_NUMBER: 4
@@ -45,13 +49,13 @@ runs:
     - uses: monry/actions-get-project-item-id@v2
       id: get-project-item-id
       with:
-        github-token: ${{ secrets.TEST_REPO_TOKEN }}
+        GITHUB_TOKEN: ${{ inputs.github-token }}
         project-id: ${{ env.PROJECT_ID }}
         issue-id: ${{ github.event.issue.node_id }}
 
     - name: Update issue status
       env:
-        GITHUB_TOKEN: ${{ secrets.TEST_REPO_TOKEN }}
+        GITHUB_TOKEN: ${{ inputs.github-token }}
         ISSUE_ITEM_ID: ${{ steps.get-project-item-id.outputs.project-item-id }}
       run: |
         gh api graphql -f query='
