@@ -66,7 +66,6 @@ jobs:
               ) {
                 projectV2Item {
                   id
-                }
-              }
+                } 
             }' -f project_id=$PROJECT_ID -F item_id=$ISSUE_ITEM_ID -F status_field_id=$STATUS_FIELD_ID -F option_id=$IN_PROGRESS_OPTION_ID
 
