@@ -8,6 +8,8 @@ jobs:
   move-assigned-issue-to-backlog:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout branch
+        uses: actions/checkout@v3
       - uses: ./.github/actions/change-issue-status
         with:
           target-status: "Backlog"
